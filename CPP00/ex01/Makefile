@@ -2,7 +2,7 @@ NAME		=	phonebook
 CXX			=	c++
 FLAGS		=	-Wall -Wextra -Werror -std=c++98 -MMD -MP
 
-SRC			=	phonebook.cpp
+SRC			=	Phonebook.cpp Contact.cpp main.cpp
 
 
 OBJ_DIR		=	./obj
