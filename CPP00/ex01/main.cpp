@@ -9,16 +9,24 @@ int main(void)
     {
         if (i == 8)
             i = 0; 
-        std::cout << "Type your command:\n" ;
+        std::cout << "Type your command:" ;
         std::getline(std::cin, input);
         if (std::cin.eof())
+        {
+            std::cout << " \n CTRL + D pressed, exiting \n";    
             return (1);
+        }
         if (input == "ADD")
             phonebook.add(i++);
         if (input == "SEARCH")
             phonebook.search();
         if (input == "EXIT")
             return (0);
+        if (std::cin.eof())
+        {
+            std::cout << " \n CTRL + D pressed, exiting \n";    
+            return (1);
+        }
     }
 
 }
