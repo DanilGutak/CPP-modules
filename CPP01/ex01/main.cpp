@@ -2,5 +2,6 @@
 #include <ostream>
 int main(void)
 {
-    zombieHorde(4, "danil");
+    Zombie* squad =zombieHorde(5, "danil");
+    delete [] squad;
 }
