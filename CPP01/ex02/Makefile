@@ -2,7 +2,7 @@ NAME		=	zombie
 CXX			=	c++
 FLAGS		=	-Wall -Wextra -Werror -std=c++98 -MMD -MP
 
-SRC			=	Zombie.cpp zombieHorde.cpp  main.cpp
+SRC			=	main.cpp
 
 
 OBJ_DIR		=	./obj
