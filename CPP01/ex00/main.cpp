@@ -1,5 +1,4 @@
 #include "Zombie.hpp"
-#include <ostream>
 int main(void)
 {
     std::cout << "---------ZOMBIE 1------\n";
@@ -12,7 +11,10 @@ int main(void)
 
     std::cout << "--------NEW ZOMBIE 3----\n";
     Zombie *zomb3 = newZombie("Danil");
-    zomb3->announce();
+    if (!zomb3)
+        std::cout << "alloc failed sry\n";
+    else
+        zomb3->announce();
     std::cout << "--------random CHUMP---\n";
     randomChump("Vitalik");
     std::cout << "--------Destructors----\n";

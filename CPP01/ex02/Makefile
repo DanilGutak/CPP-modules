@@ -1,8 +1,8 @@
-NAME		=	Megaphone
+NAME		=	zombie
 CXX			=	c++
-CXXFLAGS		=	-Wall -Wextra -Werror -std=c++98 -MMD -MP
+FLAGS		=	-Wall -Wextra -Werror -std=c++98 -MMD -MP
 
-SRC			=	megaphone.cpp
+SRC			=	Zombie.cpp zombieHorde.cpp  main.cpp
 
 
 OBJ_DIR		=	./obj
@@ -17,7 +17,7 @@ $(NAME):	$(OBJ)
 			$(CXX) $(OBJ) $(FLAGS) -o $(NAME)
 
 $(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR) 
-			$(CXX) $(CXXFLAGS) -c $< -o $@ 
+			$(CXX) $(FLAGS) -c $< -o $@ 
 
 $(OBJ_DIR):
 			mkdir -p $@
