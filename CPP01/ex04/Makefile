@@ -1,8 +1,8 @@
-NAME		=	ex03
+NAME		=	replace
 CXX			=	c++
 FLAGS		=	-Wall -Wextra -Werror -std=c++98 -MMD -MP
 
-SRC			=	HumanA.cpp  HumanB.cpp  Weapon.cpp  main.cpp
+SRC			=	main.cpp
 
 
 OBJ_DIR		=	./obj

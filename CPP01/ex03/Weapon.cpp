@@ -1,12 +1,13 @@
-#include "Zombie.hpp"
-
-
-std::string  const& getType()
+#include "Weapon.hpp"
+std::string const &Weapon::getType()
 {
-    return 
+    return this->type;
 }
-
-void Zombie::set_name(std::string name)
+void Weapon::setType(std::string type)
 {
-    this->name = name;
+    this->type = type;
+}
+Weapon::Weapon(std::string type) : type(type)
+{
+    
 }
