@@ -1,8 +1,8 @@
-NAME		=	zombie
+NAME		=	harl
 CXX			=	c++
 FLAGS		=	-Wall -Wextra -Werror -std=c++98 -MMD -MP
 
-SRC			=	Zombie.cpp zombieHorde.cpp  main.cpp
+SRC			= Harl.cpp  main.cpp
 
 
 OBJ_DIR		=	./obj
