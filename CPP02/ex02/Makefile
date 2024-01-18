@@ -2,7 +2,7 @@ NAME		=	zombie
 CXX			=	c++
 FLAGS		=	-Wall -Wextra -Werror -std=c++98 -MMD -MP
 
-SRC			=	Zombie.cpp newZombie.cpp randomChump.cpp main.cpp
+SRC			=	Fixed.cpp main.cpp
 
 
 OBJ_DIR		=	./obj
