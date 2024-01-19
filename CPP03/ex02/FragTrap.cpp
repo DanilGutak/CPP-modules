@@ -18,6 +18,7 @@ FragTrap::FragTrap(std::string Name) : ClapTrap() {
 }
 FragTrap::FragTrap( const FragTrap &other ) : ClapTrap(other) {
 	std::cout << "FragTrap - " << this->Name << " was copied" << std::endl;
+	*this = other;
 }
 FragTrap::~FragTrap() {
 	std::cout << "FragTrap " << this->Name << " is dead" << std::endl;
@@ -31,21 +32,7 @@ FragTrap &FragTrap::operator=( const FragTrap &other ) {
 	std::cout << "FragTrap - " << this->Name << " was copied" << std::endl;
 	return (*this);
 }
-void FragTrap::attack(const std::string& target)
-{
-	if (this->hp <= 0)
-	{
-		std::cout << "FragTrap " << this->Name << " is dead and cannot do anything" << std::endl;
-		return ;
-	}
-	if (this->mp <= 0)
-	{
-		std::cout << "FragTrap " << this->Name << " is out of mana and cannot do anything" << std::endl;
-		return ;
-	}
-	std::cout << "FragTrap " << this->Name << " attacks " << target << ", causing " << this->dmg << " points of damage!" << std::endl;
-	this->mp -= 1;
-}
+
 void FragTrap::highFivesGuys(void)
 {
 	std::cout << "FragTrap " << this->Name << " needs to high five" << std::endl;

@@ -21,6 +21,8 @@ int main( void ) {
         FragTrap i("FragTrap2");
         FragTrap j("FragTrap3");
         FragTrap k("FragTrap4");
+        ClapTrap *q = new FragTrap("Cell");
+
 
         i.attack("dummy target");
         j.takeDamage(3);
@@ -29,6 +31,8 @@ int main( void ) {
         k.beRepaired(100);
         k.attack("dummy target");
         k.highFivesGuys();
+        q->attack("dummy target");
+        delete q;
     }
 
 

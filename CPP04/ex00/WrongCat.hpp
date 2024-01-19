@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   WrongCat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danil.gutak <danil.gutak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 18:15:14 by danil.gutak          #+#    #+#             */
-/*   Updated: 2024/01/18 18:15:14 by danil.gutak         ###   ########.fr       */
+/*   Created: 2024/01/19 14:38:25 by danil.gutak          #+#    #+#             */
+/*   Updated: 2024/01/19 14:38:25 by danil.gutak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "ClapTrap.hpp"
+#ifndef WrongCAT_HPP
+# define WrongCAT_HPP
 
 
 # include <string>
+# include "WrongAnimal.hpp"
 
-
-class ScavTrap: public ClapTrap {
+class WrongCat : public WrongAnimal {
 public:
-	ScavTrap();
-	ScavTrap( std::string Name);
-	ScavTrap( const ScavTrap &other );
-	~ScavTrap();
-	void attack(const std::string& target);
-	void guardGate();
-
-
-	ScavTrap &operator=( const ScavTrap &other );
+	WrongCat();
+	WrongCat( const WrongCat &other );
+	~WrongCat();
+	void makeSound() const;
+	WrongCat &operator=( const WrongCat &other );
 };
 
-
-
+#endif // WrongCAT_HPP

@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danil.gutak <danil.gutak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 18:15:14 by danil.gutak          #+#    #+#             */
-/*   Updated: 2024/01/18 18:15:14 by danil.gutak         ###   ########.fr       */
+/*   Created: 2024/01/19 14:38:25 by danil.gutak          #+#    #+#             */
+/*   Updated: 2024/01/19 14:38:25 by danil.gutak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "ClapTrap.hpp"
+#ifndef CAT_HPP
+# define CAT_HPP
 
 
 # include <string>
+# include "Animal.hpp"
+# include "Brain.hpp"
 
-
-class ScavTrap: public ClapTrap {
+class Cat : public Animal {
+private:
+	Brain	*_brain;	
 public:
-	ScavTrap();
-	ScavTrap( std::string Name);
-	ScavTrap( const ScavTrap &other );
-	~ScavTrap();
-	void attack(const std::string& target);
-	void guardGate();
-
-
-	ScavTrap &operator=( const ScavTrap &other );
+	Cat();
+	Cat( const Cat &other );
+	~Cat();
+	void makeSound() const;
+	Cat &operator=( const Cat &other );
 };
 
-
-
+#endif // CAT_HPP

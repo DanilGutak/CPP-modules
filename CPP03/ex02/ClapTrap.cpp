@@ -10,6 +10,7 @@ ClapTrap::ClapTrap(std::string Name) : Name(Name), hp(10), mp(10), dmg(0) {
 }
 ClapTrap::ClapTrap( const ClapTrap &other ) : Name(other.Name), hp(other.hp), mp(other.mp), dmg(other.dmg) {
 	std::cout << "ClapTrap - " << this->Name << " was copied" << std::endl;
+	
 }
 ClapTrap::~ClapTrap() {
 	std::cout << "ClapTrap " << this->Name << " is dead" << std::endl;

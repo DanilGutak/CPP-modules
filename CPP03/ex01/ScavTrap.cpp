@@ -18,6 +18,8 @@ ScavTrap::ScavTrap(std::string Name) : ClapTrap() {
 }
 ScavTrap::ScavTrap( const ScavTrap &other ) : ClapTrap(other) {
 	std::cout << "ScavTrap - " << this->Name << " was copied" << std::endl;
+	*this = other;
+
 }
 ScavTrap::~ScavTrap() {
 	std::cout << "ScavTrap " << this->Name << " is dead" << std::endl;

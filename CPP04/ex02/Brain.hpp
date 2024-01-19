@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danil.gutak <danil.gutak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 18:15:14 by danil.gutak          #+#    #+#             */
-/*   Updated: 2024/01/18 18:15:14 by danil.gutak         ###   ########.fr       */
+/*   Created: 2024/01/19 15:15:38 by danil.gutak          #+#    #+#             */
+/*   Updated: 2024/01/19 15:15:38 by danil.gutak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "ClapTrap.hpp"
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 
 
 # include <string>
 
-
-class ScavTrap: public ClapTrap {
+class Brain {
+private:
+	std::string	ideas[100];
 public:
-	ScavTrap();
-	ScavTrap( std::string Name);
-	ScavTrap( const ScavTrap &other );
-	~ScavTrap();
-	void attack(const std::string& target);
-	void guardGate();
+	Brain();
+	Brain( const Brain &other );
+	~Brain();
 
-
-	ScavTrap &operator=( const ScavTrap &other );
+	Brain &operator=( const Brain &other );
 };
 
+std::ostream	&operator<<( std::ostream &stream, const Brain &instance );
 
 
+#endif // BRAIN_HPP

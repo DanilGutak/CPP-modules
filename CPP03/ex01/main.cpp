@@ -18,7 +18,7 @@ int main( void ) {
     {ScavTrap e("Catchy");
     ScavTrap f("Claw");
     ScavTrap g("Ceiling");
-
+    ClapTrap *q = new ScavTrap("Cell");
     f.attack("dummy target");
     g.takeDamage(3);
     g.beRepaired(2);
@@ -26,7 +26,10 @@ int main( void ) {
     g.beRepaired(100);
     g.attack("dummy target");
     g.guardGate();
+    q->attack("dummy target");
+    delete q;
     }
+
 
 
 }

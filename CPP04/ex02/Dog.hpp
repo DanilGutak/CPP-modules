@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danil.gutak <danil.gutak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 18:15:14 by danil.gutak          #+#    #+#             */
-/*   Updated: 2024/01/18 18:15:14 by danil.gutak         ###   ########.fr       */
+/*   Created: 2024/01/19 14:38:21 by danil.gutak          #+#    #+#             */
+/*   Updated: 2024/01/19 14:38:21 by danil.gutak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include "ClapTrap.hpp"
+#ifndef DOG_HPP
+# define DOG_HPP
+
 
 
 # include <string>
+# include "Animal.hpp"
+# include "Brain.hpp"
 
-
-class ScavTrap: public ClapTrap {
+class Dog: public Animal{
+private:
+	Brain	*_brain;
 public:
-	ScavTrap();
-	ScavTrap( std::string Name);
-	ScavTrap( const ScavTrap &other );
-	~ScavTrap();
-	void attack(const std::string& target);
-	void guardGate();
+	Dog();
+	Dog( const Dog &other );
+	~Dog();
+	void makeSound() const;
+	Dog &operator=( const Dog &other );
 
-
-	ScavTrap &operator=( const ScavTrap &other );
 };
 
 
 
+#endif // DOG_HPP
