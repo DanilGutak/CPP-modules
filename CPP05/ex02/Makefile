@@ -2,7 +2,7 @@ NAME		=	fixed
 CXX			=	c++
 FLAGS		=	-Wall -Wextra -Werror -std=c++98 -MMD -MP
 
-SRC			=	AForm.cpp Bureaucrat.cpp main.cpp PresidentialPardonForm.cpp 
+SRC			=	AForm.cpp Bureaucrat.cpp main.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
 
 
 OBJ_DIR		=	./obj

@@ -72,7 +72,7 @@ std::ostream	&operator<<( std::ostream &stream, const Bureaucrat &instance ) {
 	return (stream);
 }
 
-void Bureaucrat::executeForm(AForm const & form) {
+void Bureaucrat::executeForm(AForm const & form) const{
 	try {
 		form.execute(*this);
 		std::cout << this->_name << " executes " << form.getName() << '\n';

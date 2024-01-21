@@ -45,7 +45,7 @@ public:
 		const char *what() const throw();
 	};
 	void signForm(AForm &form);
-	void executeForm(AForm const & form);
+	void executeForm(AForm const & form) const;
 	Bureaucrat &operator=( const Bureaucrat &other );
 };
 
