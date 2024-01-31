@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.hpp                                     :+:      :+:    :+:   */
+/*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danil.gutak <danil.gutak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/26 13:51:11 by danil.gutak          #+#    #+#             */
-/*   Updated: 2024/01/26 13:51:11 by danil.gutak         ###   ########.fr       */
+/*   Created: 2024/01/27 20:35:54 by danil.gutak          #+#    #+#             */
+/*   Updated: 2024/01/27 20:35:54 by danil.gutak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#ifndef SERIALIZER_HPP
-# define SERIALIZER_HPP
+#ifndef SPAN_HPP
+# define SPAN_HPP
 
 
 # include <string>
 # include <iostream>
 
-class Serializer {
-private:
-	Serializer();
-	Serializer( const Serializer &other );
-	~Serializer();
+class Span {
+protected:
+	const unsigned int	_N;
+	std::vector<int>	_vec;
 
-	Serializer &operator=( const Serializer &other );
+
 public:
-	static uintptr_t	serialize( Data *ptr );
-	static Data	*deserialize( uintptr_t raw );
-};
-struct Data {
-	std::string	s1;
-	int			n;
-	std::string	s2;
+	Span( const unsigned int N );
+	Span( const Span &other );
+	~Span();
+	Span &operator=( const Span &other );
+	unsigned int	getN() const;
+	void addNumber(int num);
+	void addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+	int shortestSpan();
+	int longestSpan();
 };
 
 
-#endif // SERIALIZER_HPP
+
+#endif // SPAN_HPP

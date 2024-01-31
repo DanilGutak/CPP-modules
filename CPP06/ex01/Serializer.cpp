@@ -22,10 +22,10 @@ Serializer &Serializer::operator=( const Serializer & ) {
 	return (*this);
 }
 
-uintptr_t	Serializer::serialize( void *ptr ) {
+uintptr_t	Serializer::serialize( Data *ptr ) {
 	return (reinterpret_cast<uintptr_t>(ptr));
 }
 
-void		*Serializer::deserialize( uintptr_t raw ) {
+Data		*Serializer::deserialize( uintptr_t raw ) {
 	return (reinterpret_cast<Data *>(raw));
 }
