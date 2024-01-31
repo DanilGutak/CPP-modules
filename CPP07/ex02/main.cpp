@@ -24,5 +24,7 @@ int main(){
         std::cout << "d: " << e.what() << std::endl;
     }
     int i = a.size(); 
+    std::cout << "size: " << i << std::endl;
+    
 
 };
