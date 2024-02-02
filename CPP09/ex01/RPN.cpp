@@ -23,17 +23,19 @@ RPN &RPN::operator=( const RPN & ) {
 }
 
 const char * RPN::InvalidExpressionException::what() const throw() {
-	return "Wrong experessionsyntax";
+	return "Wrong Experession Syntax";
 }
 const char * RPN::NotEnoughValuesException::what() const throw() {
-	return "Not enough values";
+	return "Not Enough Values";
 }
 const char * RPN::DivisionByZeroException::what() const throw() {
-	return "Division by zero";
+	return "Division By Zero";
 }
 std::string RPN::validate_input(std::string input) {
 	std::string str;
 	int i = 0;
+	int num = 0;
+	int ops = 0;
 	int length = input.length(); 
 	while (i < length) {
 		if (i % 2 == 0 && !isdigit(input.at(i)) && input.at(i) != '+' && input.at(i) != '-' && input.at(i) != '*' && input.at(i) != '/' )
@@ -41,24 +43,33 @@ std::string RPN::validate_input(std::string input) {
 		else if (i % 2 == 1 && input.at(i) != ' '&& i != length - 1)
 			throw RPN::InvalidExpressionException();
 		if (input.at(i) != ' ')
+		{
 			str += input.at(i);
+			if (std::isdigit(input[i]))
+				num++;
+			else
+				ops++;
+		}
 		i++;
 	}
+	if (num - ops != 1)
+		throw RPN::InvalidExpressionException();
 	return str;
 }
-int RPN::calculate(std::string input)
+double RPN::calculate(std::string input)
 {
 	std::stack<double> stack;
 	std::string str = validate_input(input);
-	int i = 0;
-	int length = str.length();
+	double i = 0;
+	double length = str.length();
 	while (i < length)
 	{
-		if (isdigit(input.at(i)))
+		if (isdigit(str[i]))
 		{
-			stack.push(std::atoi(&input.at(i)));
+			double digit = static_cast<double>(str[i] - '0'); 
+   			stack.push(digit);
 		}
-		if (input.at(i) == '+')
+		if (str.at(i) == '+')
 		{
 			if (stack.size() < 2)
 				throw RPN::NotEnoughValuesException();
@@ -67,9 +78,8 @@ int RPN::calculate(std::string input)
 			double b = stack.top();
 			stack.pop();
 			stack.push(a + b);
-			std::cout << a << " + " << b << " = " << a + b << std::endl;
 		}
-		else if (input.at(i) == '-')
+		else if (str.at(i) == '-')
 		{
 			if (stack.size() < 2)
 				throw RPN::NotEnoughValuesException();
@@ -79,7 +89,7 @@ int RPN::calculate(std::string input)
 			stack.pop();
 			stack.push(b - a);
 		}
-		else if (input.at(i) == '*')
+		else if (str.at(i) == '*')
 		{
 			if (stack.size() < 2)
 				throw RPN::NotEnoughValuesException();
@@ -89,7 +99,7 @@ int RPN::calculate(std::string input)
 			stack.pop();
 			stack.push(a * b);
 		}
-		else if (input.at(i) == '/')
+		else if (str.at(i) == '/')
 		{
 			if (stack.size() < 2)
 				throw RPN::NotEnoughValuesException();
@@ -103,6 +113,6 @@ int RPN::calculate(std::string input)
 		}
 		i++;
 	}
-	return stack.top();
+	return (stack.top());
 
 }

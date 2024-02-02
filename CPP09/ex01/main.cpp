@@ -8,7 +8,12 @@ int main(int argc, char **argv)
         return 1;
     }
     std::string str = argv[1];
-    std::cout << "Expression: " << str << "\n";
-    std::cout << "Result: " << RPN::validate_input(str) << "\n";
-    std::cout << "Result: " << RPN::calculate(str) << "\n";
+    try
+    {
+        std::cout << RPN::calculate(str) << "\n";
+    }
+    catch (std::exception &e)
+    {
+        std::cout << e.what() << "\n";
+    }
 }

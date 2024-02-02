@@ -28,7 +28,7 @@ private:
 	RPN &operator=( const RPN &other );
 public:
 	static std::string validate_input(std::string input);
-	static int calculate(std::string input);
+	static double calculate(std::string input);
 
 	class InvalidExpressionException: public std::exception {
 	public:
