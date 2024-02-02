@@ -17,6 +17,7 @@
 
 
 # include <string>
+# include "Base.hpp"
 
 class C : public Base{
 public:

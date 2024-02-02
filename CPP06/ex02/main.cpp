@@ -2,11 +2,13 @@
 #include "B.hpp"
 #include "C.hpp"
 #include "Base.hpp"
+#include <ctime>
+#include <cstdlib>
 
 Base *generate(void)
 {
-    srand(time(NULL));
-    int i = rand() % 3;
+    std::srand(std::time(0));
+    int i = std::rand() % 3;
     if (i == 0)
         return new A;
     else if (i == 1)
