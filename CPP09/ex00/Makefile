@@ -1,8 +1,8 @@
-NAME		=	zombie
+NAME		=	btc
 CXX			=	c++
 FLAGS		=	-Wall -Wextra -Werror -std=c++98 -MMD -MP
 
-SRC			=	 main.cpp
+SRC			=	 main.cpp BitcoinExchange.cpp
 
 
 OBJ_DIR		=	./obj
