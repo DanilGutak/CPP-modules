@@ -18,6 +18,7 @@
 
 # include <string>
 # include <iostream>
+# include <vector>
 
 class Span {
 protected:

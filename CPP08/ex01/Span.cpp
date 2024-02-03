@@ -11,6 +11,14 @@
 /* ************************************************************************** */
 
 #include "Span.hpp"
+#include <algorithm>
+#include <exception>
+#include <climits>
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <iterator>
+#include <numeric>
 
 
 Span::Span( const unsigned int N ) : _N(N) {}

@@ -5,7 +5,7 @@ int main()
 {
     std::cout  << "------------------" << std::endl;
     std::cout  << "Test with vector:" << std::endl;
-    std::vector<int> v = {1, 2, 3, 4, 5};
+    std::vector<int> v;
     for (int i = 0; i < 5; i++)
         v.push_back(i);
     try
