@@ -1,8 +1,8 @@
-NAME		=	zombie
+NAME		=	PmergeMe
 CXX			=	c++
 FLAGS		=	-Wall -Wextra -Werror -std=c++98 -MMD -MP
 
-SRC			=	 main.cpp Span.cpp
+SRC			=	 main.cpp PmergeMe.cpp
 
 
 OBJ_DIR		=	./obj

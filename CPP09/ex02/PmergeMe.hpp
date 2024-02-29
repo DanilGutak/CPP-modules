@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MutantStack.cpp                                    :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: danil.gutak <danil.gutak@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 15:14:25 by danil.gutak          #+#    #+#             */
-/*   Updated: 2024/01/31 15:14:25 by danil.gutak         ###   ########.fr       */
+/*   Created: 2024/02/29 18:29:13 by danil.gutak          #+#    #+#             */
+/*   Updated: 2024/02/29 18:29:13 by danil.gutak         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MutantStack.hpp"
+#pragma once
 
+#ifndef PMERGE_ME_HPP
+# define PMERGE_ME_HPP
+
+
+# include <string>
 #include <iostream>
+#include <vector>
+#include <deque>
 
-MutantStack::MutantStack() {}
-MutantStack::MutantStack( const MutantStack & ) {}
-MutantStack::~MutantStack() {}
+class PmergeMe {
+public:
+	PmergeMe();
+	PmergeMe( const PmergeMe &other );
+	~PmergeMe();
 
-MutantStack &MutantStack::operator=( const MutantStack & ) {
-	return (*this);
-}
+	PmergeMe &operator=( const PmergeMe &other );
+};
+
+std::ostream	&operator<<( std::ostream &stream, const PmergeMe &instance );
+
+
+#endif // PMERGE_ME_HPP
