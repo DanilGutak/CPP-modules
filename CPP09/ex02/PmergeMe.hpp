@@ -23,6 +23,9 @@
 
 class PmergeMe {
 public:
+	static const int Jacobsthal[];
+	static void mergeinsertSort(std::vector<int>& vec);
+private:
 	PmergeMe();
 	PmergeMe( const PmergeMe &other );
 	~PmergeMe();
