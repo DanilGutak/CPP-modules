@@ -1,8 +1,6 @@
 
 #include "PmergeMe.hpp"
 
-const int PmergeMe::Jacobsthal[] = { 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461, 10923, 21845, 43691, 87381, 174763, 349525};
-
 
 int main(int argc, char **argv)
 {
@@ -42,13 +40,12 @@ int main(int argc, char **argv)
     std::cout << std::endl;
 
     //sort array for vector
-    
     PmergeMe::mergeinsertSort(vec);
     //sort array for deque
 
-    // std::cout << "After sort:" << std::endl;
-    // for (unsigned int i = 0; i < vec.size(); i++)
-    //     std::cout << vec[i] << " ";
+    std::cout << "After sort:" << std::endl;
+    for (unsigned int i = 0; i < vec.size(); i++)
+        std::cout << vec[i] << " ";
     std::cout << std::endl;
     // time for vector
 

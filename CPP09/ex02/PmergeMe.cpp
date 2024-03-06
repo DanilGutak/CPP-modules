@@ -20,13 +20,39 @@ PmergeMe::~PmergeMe() {}
 PmergeMe &PmergeMe::operator=( const PmergeMe & ) {
 	return (*this);
 }
+int binary_search(std::vector<int> const &vec, int target) {
+	int low = 0;
+	int high = vec.size() - 1;
 
-const int PmergeMe::Jacobsthal[] = { 0, 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461,
- 10923, 21845, 43691, 87381, 174763, 349525, 699051, 1398101, 2796203, 5592405, 11184811, 22369621, 
- 44739243, 89478485, 178956971, 357913941, 715827883, 1431655765, 2863311531};
+	while (low <= high) {
+		int mid = low + (high - low) / 2;
+
+		if (vec[mid] == target) {
+			return mid;
+		} else if (vec[mid] < target) {
+			low = mid + 1;
+		} else {
+			high = mid - 1;
+		}
+	}
+	return low;
+}
+
+std::vector <int> createJacobsthal() {
+	
+	std::vector<int> Jacobsthal(32);
+	Jacobsthal[0] = 0;
+	Jacobsthal[1] = 1;
+	for (int i = 2; i < 33; i++) {
+		Jacobsthal[i] = Jacobsthal[i - 1] + 2 * Jacobsthal[i - 2];
+	}
+	return Jacobsthal;
+}
 void PmergeMe::mergeinsertSort(std::vector<int>& vec) {
 
-    //base case
+    
+	std::vector<int> Jacobsthal = createJacobsthal();
+	//base case
 	if (vec.size() < 2)
 		return;
 	// create iterators for the beginning and end of the vector and the middle of the vector
@@ -52,7 +78,8 @@ void PmergeMe::mergeinsertSort(std::vector<int>& vec) {
 	PmergeMe::mergeinsertSort(right);
 
 	// connect elements of the left and right vectors to the original vector
-
+	// print jacobsthal numbers
+	std::cout << std::endl;
 	for (unsigned int i = 0; i < right.size(); i++)
 	{
 		//find ith element in right vector in the copy right vector
@@ -64,7 +91,7 @@ void PmergeMe::mergeinsertSort(std::vector<int>& vec) {
 		int index = std::distance(right_copy.begin(), it);
 
 		// replace the element from the copy left vector at the index of the element in the left vector
-		std::swap(left[i], left_copy[index]);
+		left[i] = left_copy[index];
 	}
 
 	std::vector <int> ret;
@@ -73,16 +100,21 @@ void PmergeMe::mergeinsertSort(std::vector<int>& vec) {
 	{
 		left.push_back(stragler);
 	}
-
 	ret = right;
 	// add the elements of the left vector to the right vector since the left vector is sorted and the first elem is the smallest one
 	ret.insert(ret.begin(), left[0]);
-
-	
-
-
-
+	std::vector <int> range;
+	int index;
+	for (int i = 1; i <= std::distance(Jacobsthal.begin(), std::lower_bound(Jacobsthal.begin(), Jacobsthal.end() , left.size() - 1)); i++) {
+		if ((static_cast<int>(left.size()) - 1) < Jacobsthal[i]) {
+			index = static_cast<int>(left.size()) - 1;
+		} else
+			index = Jacobsthal[i];
+		while (index != Jacobsthal[i - 1]) {
+			range = std::vector <int>(ret.begin(), std::find(ret.begin(), ret.end(), right[index]) + 1);
+			ret.insert(std::lower_bound(ret.begin(),ret.end(),left[index]), left[index]);
+			index--;
+		}
+	}
 	vec = ret;
-	
-
 }
