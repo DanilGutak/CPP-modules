@@ -20,24 +20,6 @@ PmergeMe::~PmergeMe() {}
 PmergeMe &PmergeMe::operator=( const PmergeMe & ) {
 	return (*this);
 }
-int binary_search(std::vector<int> const &vec, int target) {
-	int low = 0;
-	int high = vec.size() - 1;
-
-	while (low <= high) {
-		int mid = low + (high - low) / 2;
-
-		if (vec[mid] == target) {
-			return mid;
-		} else if (vec[mid] < target) {
-			low = mid + 1;
-		} else {
-			high = mid - 1;
-		}
-	}
-	return low;
-}
-
 std::vector <int> createJacobsthal() {
 	
 	std::vector<int> Jacobsthal(32);
@@ -106,9 +88,9 @@ void PmergeMe::mergeinsertSort(std::vector<int>& vec) {
 	std::vector <int> range;
 	int index;
 	for (int i = 1; i <= std::distance(Jacobsthal.begin(), std::lower_bound(Jacobsthal.begin(), Jacobsthal.end() , left.size() - 1)); i++) {
-		if ((static_cast<int>(left.size()) - 1) < Jacobsthal[i]) {
-			index = static_cast<int>(left.size()) - 1;
-		} else
+		if ((static_cast<int>(left.size()) - 1) < Jacobsthal[i])
+			index = static_cast<int>(left.size()) - 1; 
+		else
 			index = Jacobsthal[i];
 		while (index != Jacobsthal[i - 1]) {
 			range = std::vector <int>(ret.begin(), std::find(ret.begin(), ret.end(), right[index]) + 1);

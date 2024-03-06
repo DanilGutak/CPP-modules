@@ -1,6 +1,6 @@
 
 #include "PmergeMe.hpp"
-
+#include <cstdlib>
 
 int main(int argc, char **argv)
 {
@@ -33,8 +33,8 @@ int main(int argc, char **argv)
     std::deque <int> deq;
     for (int i = 1; i < argc; i++)
     {
-        vec.push_back(atoi(argv[i]));
-        deq.push_back(atoi(argv[i]));
+        vec.push_back(std::atoi(argv[i]));
+        deq.push_back(std::atoi(argv[i]));
         std::cout << vec[i - 1] << " ";
     }
     std::cout << std::endl;
