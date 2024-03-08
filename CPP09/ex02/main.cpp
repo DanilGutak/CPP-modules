@@ -41,16 +41,18 @@ int main(int argc, char **argv)
     }
     std::cout << std::endl;
     clock_t start = clock();
+
     std::vector <int> vec;
     for (int i = 1; i < argc; i++)
     {
         vec.push_back(std::atoi(argv[i]));
     }
+
     clock_t start2 = clock();
     merge_insertion_sort(vec);
     clock_t end = clock();
     
-    double time_data = (double)(end - start) / CLOCKS_PER_SEC;
+    double time_data = (double)(start2 - start) / CLOCKS_PER_SEC;
     double time_algo = (double)(end - start2) / CLOCKS_PER_SEC;
     
     std::cout << "After sort:" << std::endl;
@@ -71,17 +73,10 @@ int main(int argc, char **argv)
     merge_insertion_sort(deq);
     end = clock();
     
-    time_data = (double)(end - start) / CLOCKS_PER_SEC;
+    time_data = (double)(start2 - start) / CLOCKS_PER_SEC;
     time_algo = (double)(end - start2) / CLOCKS_PER_SEC;
 
     std::cout << "Time for deque data management: " << time_data << " seconds" << std::endl;
     std::cout << "Time for deque algorithm: " << time_algo << " seconds" << std::endl;
-
-    std::cout << "After sort:" << std::endl;
-    for (unsigned int i = 0; i < vec.size(); i++)
-        std::cout << vec[i] << " ";
-    std::cout << std::endl;
-    
-
     return 0;
 }

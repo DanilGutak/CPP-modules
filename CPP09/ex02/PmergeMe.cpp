@@ -22,11 +22,11 @@ int jacobsthal(int n) {
 }
 
 // Function to determine the order of pending elements
-std::vector<int> pending_element_order(int n) {
+int pending_element_order(int n) {
     std::vector<int> order;
     for (int i = 0; jacobsthal(i) < n; ++i)
         order.push_back(jacobsthal(i));
     order.push_back(n);
-    return order;
+    return order.back();
 }
 

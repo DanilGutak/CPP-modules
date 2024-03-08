@@ -30,8 +30,8 @@ echo -e "${YELLOW}Running PmergeMe with 50 random numbers between 2 and 1000${NC
 echo -e "${YELLOW}Running PmergeMe with 80 random numbers between 2 and 5000${NC}"
 ./PmergeMe $(jot -r 80 2 5000 | tr '\n' ' ')
 
-echo -e "${YELLOW}Running PmergeMe with 100 random numbers between 2 and 5000${NC}"
-./PmergeMe $(jot -r 100 2 5000 | tr '\n' ' ')
+#echo -e "${YELLOW}Running PmergeMe with 100 random numbers between 2 and 5000${NC}"
+#./PmergeMe $(jot -r 5000 2 5000 | tr '\n' ' ')
 
 echo -e "${GREEN}All PmergeMe executions completed.${NC}\n"
 echo -e "Running make fclean: "

@@ -25,7 +25,7 @@
 #include <iomanip>
 
 int jacobsthal(int n);
-std::vector<int> pending_element_order(int n);
+int pending_element_order(int n);
 
 // Binary search to find the insertion point
 template <typename T>
@@ -76,7 +76,7 @@ void merge_insertion_sort(T &A) {
         main_chain_positions[i] = i;
 
     for (unsigned int i = 0; i < pending_elements.size(); ++i) {
-        int index = pending_element_order(i).back();
+        int index = pending_element_order(i);
         int insert_index = binary_search_insertion_point(main_chain, pending_elements[index]);
         main_chain_positions.insert(main_chain_positions.begin() + insert_index, i);
         main_chain.insert(main_chain.begin() + insert_index, pending_elements[i]);
