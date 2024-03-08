@@ -13,18 +13,6 @@
 #include <iomanip>
 
 int jacobsthal(int n);
-int pending_element_order(int n);
-
-int pending_element_position(unsigned int  n, int size) {
-    std::vector<int> positions;
-    for (int i = 0; jacobsthal(i) < size; ++i) {
-        positions.push_back(jacobsthal(i));
-    }
-    if (n < positions.size()) {
-        return positions[n];
-    }
-    return size - 1; // If beyond the last Jacobsthal number, use the last element
-}
 
 // Binary search to find the insertion point
 template <typename T>
@@ -63,7 +51,8 @@ void merge(std::vector<T>& vec, int start, int mid, int end) {
 // Recursive function to sort pairs using the Ford-Johnson merge-insertion sort algorithm
 template <typename T>
 void merge_insertion_sort_pairs(std::vector<T>& pairs, int start, int end) {
-    if (end - start <= 1) return;
+    if (end - start <= 1)
+		return;
 
     int mid = start + (end - start) / 2;
     merge_insertion_sort_pairs(pairs, start, mid);
@@ -72,7 +61,7 @@ void merge_insertion_sort_pairs(std::vector<T>& pairs, int start, int end) {
 
     // Insert pending elements using the Jacobsthal sequence
     for (int i = 0; i < mid - start; ++i) {
-        int position = pending_element_position(i, end - start);
+        int position = pending_element_order(i);
         if (position != i) {
             std::rotate(pairs.begin() + start + i, pairs.begin() + start + position, pairs.begin() + start + position + 1);
         }
