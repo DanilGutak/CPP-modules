@@ -4,7 +4,7 @@
 # define PMERGE_ME_HPP
 
 
-# include <string>
+#include <string>
 #include <iostream>
 #include <vector>
 #include <deque>
@@ -13,6 +13,7 @@
 #include <iomanip>
 
 int jacobsthal(int n);
+int pending_element_order(int n);
 
 // Binary search to find the insertion point
 template <typename T>
@@ -28,6 +29,7 @@ int binary_search_insertion_point(const T& vec, const int& value) {
 	}
 	return low;
 }
+
 template <typename T>
 void merge(std::vector<T>& vec, int start, int mid, int end) {
     std::vector<T> temp;
@@ -51,6 +53,7 @@ void merge(std::vector<T>& vec, int start, int mid, int end) {
 // Recursive function to sort pairs using the Ford-Johnson merge-insertion sort algorithm
 template <typename T>
 void merge_insertion_sort_pairs(std::vector<T>& pairs, int start, int end) {
+
     if (end - start <= 1)
 		return;
 
@@ -71,7 +74,9 @@ void merge_insertion_sort_pairs(std::vector<T>& pairs, int start, int end) {
 // Merge-insertion sort function
 template <typename T>
 void merge_insertion_sort(T &A) {
+
     std::vector<std::pair<int, int> > pairs;
+
     for (unsigned int i = 0; i + 1 < A.size(); i += 2) {
         if (A[i] > A[i + 1])
             std::swap(A[i], A[i + 1]);
