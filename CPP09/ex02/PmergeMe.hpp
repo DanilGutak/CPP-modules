@@ -21,8 +21,8 @@ int binary_search_insertion_point(const T& vec, const int& value) {
 	int low = 0;
 	int high = vec.size();
 	while (low < high) {
-		int mid = low + (high - low) / 2;
-		if (vec[mid] < value)
+		unsigned int mid = low + (high - low) / 2;
+        if (vec[mid] < value)
 			low = mid + 1;
 		else
 			high = mid;
@@ -100,8 +100,12 @@ void merge_insertion_sort(T &A) {
         main_chain_positions[i] = i;
 
     for (unsigned int i = 0; i < pending_elements.size(); ++i) {
-        int index = pending_element_order(i);
-        int insert_index = binary_search_insertion_point(main_chain, pending_elements[index]);
+        unsigned int index = pending_element_order(i);
+        unsigned int insert_index;
+        if (index < pending_elements.size() ) {
+            insert_index = binary_search_insertion_point(main_chain, pending_elements[index]);}
+        else {
+            insert_index = binary_search_insertion_point(main_chain, pending_elements[i]);}
         main_chain_positions.insert(main_chain_positions.begin() + insert_index, i);
         main_chain.insert(main_chain.begin() + insert_index, pending_elements[i]);
     }

@@ -19,6 +19,8 @@
 # include <string>
 # include <iostream>
 # include <map>
+#include <iomanip>
+
 
 
 class BitcoinExchange {

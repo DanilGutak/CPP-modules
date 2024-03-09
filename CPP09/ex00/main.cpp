@@ -4,7 +4,6 @@
 int main(int argc, char **argv)
 {
     std::map <std::string, double> db;
-    std::map <std::string, double> input;
     if (argc != 2)
     {
         std::cout << "Usage: ./btc \"filename\"\n";
@@ -20,9 +19,10 @@ int main(int argc, char **argv)
         std::cout << e.what() << " in Database\n";
         return 1;
     }
+    //print db
     try
     {
-        BitcoinExchange::calculate(input, filename);
+        BitcoinExchange::calculate(db, filename);
     }
     catch (std::exception &e)
     {

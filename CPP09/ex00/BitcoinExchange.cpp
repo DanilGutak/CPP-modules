@@ -14,6 +14,8 @@
 
 #include <iostream>
 #include <fstream>
+#include <cstring>
+#include <cstdlib>
 
 BitcoinExchange::BitcoinExchange() {}
 BitcoinExchange::BitcoinExchange( const BitcoinExchange & ) {}
@@ -39,7 +41,7 @@ std::map<std::string, double> BitcoinExchange::readdb(std::string filename) {
 	
 	std::ifstream inputFile;
 
-    inputFile.open(filename);
+    inputFile.open(filename.c_str());
 
     if (!inputFile.is_open()) {
 		throw InvalidFileException();
@@ -57,7 +59,7 @@ std::map<std::string, double> BitcoinExchange::readdb(std::string filename) {
 		if (date == "" || price == "") {
 			break;
 		}
-		data[date] = std::stod(price);
+		data[date] = strtod(price.c_str(), NULL);
 	}
 	inputFile.close();
 	for (std::map<std::string, double>::iterator it = data.begin(); it != data.end(); it++) {
@@ -77,9 +79,9 @@ std::map<std::string, double> BitcoinExchange::readdb(std::string filename) {
 				throw InvalidFormatException();
 			}
 		}
-		int year = std::stoi(it->first.substr(0, 4));
-		int month = std::stoi(it->first.substr(5, 2));
-		int day = std::stoi(it->first.substr(8, 2));
+		int year = atoi(it->first.substr(0, 4).c_str());
+		int month = atoi(it->first.substr(5, 2).c_str());
+		int day = atoi(it->first.substr(8, 2).c_str());
 		if (month < 1 || month > 12 || day < 1 || day > 31) {
 			throw InvalidFormatException();
 		}
@@ -99,7 +101,9 @@ std::map<std::string, double> BitcoinExchange::readdb(std::string filename) {
 void BitcoinExchange::calculate(std::map<std::string, double> db, std::string filename) {
 	std::ifstream inputFile;
 
-    inputFile.open(filename);
+    inputFile.open(filename.c_str());
+
+	std::cout << std::fixed << std::setprecision(6);
 
     if (!inputFile.is_open()) {
 		throw InvalidFileException();
@@ -115,10 +119,13 @@ void BitcoinExchange::calculate(std::map<std::string, double> db, std::string fi
 		std::string line;
 		double valued;
 		std::getline(inputFile, line );
+		if (line.length() < 14) {
+			std::cout << "Wrong date format" << "\n";
+			continue;
+		}
 		//split line into date and value
 		date = line.substr(0, 10);
 		value = line.substr(13,line.length());
-		std::cout << date<< "  "<< value << "\n";
 		// check length
 		if (date.length() != 10) {
 			std::cout << "Wrong date format" << "\n";
@@ -138,9 +145,9 @@ void BitcoinExchange::calculate(std::map<std::string, double> db, std::string fi
 			}
 		}
 		// turn date into numbers
-		int year = std::stoi(date.substr(0, 4));
-		int month = std::stoi(date.substr(5, 2));
-		int day = std::stoi(date.substr(8, 2));
+		int year = atoi(date.substr(0, 4).c_str());
+		int month = atoi(date.substr(5, 2).c_str());
+		int day = atoi(date.substr(8, 2).c_str());
 		// check if date is valid
 		if (month < 1 || month > 12 || day < 1 || day > 31) {
 			std::cout << "Wrong date format" << "\n";
@@ -158,7 +165,7 @@ void BitcoinExchange::calculate(std::map<std::string, double> db, std::string fi
 			std::cout << "Wrong date format" << "\n";
 			continue;
 		}
-		// february
+		// february"   "<< counter
 		if (month == 2 && day == 29 && (year % 4 != 0 || (year % 100 == 0 && year % 400 != 0))) {
 			std::cout << "Wrong date format" << "\n";
 			continue;
@@ -167,31 +174,30 @@ void BitcoinExchange::calculate(std::map<std::string, double> db, std::string fi
 		if (date == "") {
 			std::cout << "Empty date" << "\n";
 		}
-		std::getline(inputFile, value);
 		if (value == "") {
 			std::cout << "Empty value" << "\n";
 		}
 		// check if value is a number
 		for (unsigned int i = 1; i < value.length(); i++) {
 			if (!isdigit(value[i]) && value[i] != '.') {
-				std::cout << "Wrong value format" << "\n";
+				std::cout << "Wrong value format" <<value[i] <<"\n" ;
 				value = "";
 				break;
 			}
 		}
 		if (value == "")
 			continue;
-		valued = std::stod(value);
+		valued = strtod(value.c_str(), NULL);
 		// check if value is too big
-		if (valued > 2147483647) {
+		if (valued > 2147483647 || valued < 0 || valued > 1000) { 
 			std::cout << "Wrong value format" << "\n";
 			continue;
 		}
 		if (db.find(date) == db.end()) {
-		std::map<std::string, double>::iterator iter = db.lower_bound(date);
+		std::map<std::string, double>::iterator iter = --db.lower_bound(date);
 		std::cout << date << "=>" << valued << " = " <<  valued * iter->second << "\n";
 		} else {
-			std::cout << date << " = >" << valued << " = " << valued * db[date] << "\n";
+			std::cout << date << "=>" << valued << " = " << valued * db[date] << "\n";
 		}
 	}
 
