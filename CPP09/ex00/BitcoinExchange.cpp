@@ -63,7 +63,7 @@ std::map<std::string, double> BitcoinExchange::readdb(std::string filename) {
 	}
 	inputFile.close();
 	for (std::map<std::string, double>::iterator it = data.begin(); it != data.end(); it++) {
-		if (it->second < 0) {
+		if (it->second < 0 || it->second > 2147483647) {
 			throw InvalidFormatException();
 		}
 		if (it->first.length() != 10) {
@@ -189,7 +189,7 @@ void BitcoinExchange::calculate(std::map<std::string, double> db, std::string fi
 			continue;
 		valued = strtod(value.c_str(), NULL);
 		// check if value is too big
-		if (valued > 2147483647 || valued < 0 || valued > 1000) { 
+		if (valued < 0 || valued > 1000) { 
 			std::cout << "Wrong value format" << "\n";
 			continue;
 		}
