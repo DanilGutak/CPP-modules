@@ -138,12 +138,16 @@ void BitcoinExchange::calculate(std::map<std::string, double> db, std::string fi
 
 		}
 		//check that date is a number
+		int flag = 0;
 		for (int i = 0; i < 10; i++) {
 			if (i != 4 && i != 7 && !isdigit(date[i])) {
 				std::cout << "Wrong date format" << "\n";
-				continue;
+				flag = 1;
+				break;
 			}
 		}
+		if (flag == 1)
+			continue;
 		// turn date into numbers
 		int year = atoi(date.substr(0, 4).c_str());
 		int month = atoi(date.substr(5, 2).c_str());
@@ -178,14 +182,27 @@ void BitcoinExchange::calculate(std::map<std::string, double> db, std::string fi
 			std::cout << "Empty value" << "\n";
 		}
 		// check if value is a number
+		int dots = 0;
 		for (unsigned int i = 1; i < value.length(); i++) {
-			if (!isdigit(value[i]) && value[i] != '.') {
-				std::cout << "Wrong value format" <<value[i] <<"\n" ;
-				value = "";
-				break;
+			if (!isdigit(value[i])) {
+				if (value[i] == '.') {
+					dots++;
+					if (dots <= 1) {
+						continue;
+					}
+					std::cout << "Wrong value format" <<value[i] <<"\n" ;
+					flag = 1;
+					break;
+				}
+				else
+				{
+					std::cout << "Wrong value format" <<value[i] <<"\n" ;
+					flag = 1;
+					break;
+				}
 			}
 		}
-		if (value == "")
+		if (flag == "")
 			continue;
 		valued = strtod(value.c_str(), NULL);
 		// check if value is too big
