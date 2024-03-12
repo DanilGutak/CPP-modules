@@ -7,6 +7,8 @@
 #include <iterator>
 #include <cmath>
 
+
+
 int main(int argc, char **argv)
 {
     if (argc < 2)
@@ -47,7 +49,11 @@ int main(int argc, char **argv)
     {
         vec.push_back(std::atoi(argv[i]));
     }
-
+    if (isSorted(vec) == 1)
+    {
+        std::cout << "Array is sorted!" << std::endl;
+        return 0;
+    }
     clock_t start2 = clock();
     merge_insertion_sort(vec);
     clock_t end = clock();

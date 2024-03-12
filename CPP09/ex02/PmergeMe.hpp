@@ -14,6 +14,7 @@
 
 int jacobsthal(int n);
 int pending_element_order(int n);
+int isSorted(std::vector <int> vec);
 
 // Binary search to find the insertion point
 template <typename T>
