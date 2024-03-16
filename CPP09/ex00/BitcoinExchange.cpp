@@ -202,7 +202,7 @@ void BitcoinExchange::calculate(std::map<std::string, double> db, std::string fi
 				}
 			}
 		}
-		if (flag == "")
+		if (flag == 1)
 			continue;
 		valued = strtod(value.c_str(), NULL);
 		// check if value is too big
