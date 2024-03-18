@@ -41,6 +41,9 @@ std::map<std::string, double> BitcoinExchange::readdb(std::string filename) {
 	
 	std::ifstream check;
 	check.open(filename.c_str());
+	if (!check.is_open()) {
+		throw InvalidFileException();
+	}
 
 	std::string checkstr;
 	while (check.good()) {
