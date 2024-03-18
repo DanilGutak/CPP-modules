@@ -39,8 +39,24 @@ const char *BitcoinExchange::InvalidFormatException::what() const throw() {
 std::map<std::string, double> BitcoinExchange::readdb(std::string filename) {
 	std::map<std::string, double> data;
 	
-	std::ifstream inputFile;
+	std::ifstream check;
+	check.open(filename.c_str());
 
+	std::string checkstr;
+	while (check.good()) {
+		std::string buf;
+		std::getline(check, buf);
+		checkstr += buf + "\n";
+	}
+	std::string check2 = DATACSV;
+	//check string char by char with DATACSV
+	for (unsigned int i = 0; i < check2.length(); i++) {
+		if (checkstr[i] != check2[i]) {
+			throw InvalidFormatException();
+		}
+	}
+	check.close();	
+	std::ifstream inputFile;
     inputFile.open(filename.c_str());
 
     if (!inputFile.is_open()) {
@@ -48,53 +64,14 @@ std::map<std::string, double> BitcoinExchange::readdb(std::string filename) {
     }
 	std::string header;
 	std::getline(inputFile, header);
-	if (header != "date,exchange_rate") {
-		throw InvalidFormatException();
-	}
 	while (inputFile.good()) {
 		std::string date;
 		std::string price;
 		std::getline(inputFile, date, ',');
 		std::getline(inputFile, price);
-		if (date == "" || price == "") {
-			break;
-		}
 		data[date] = strtod(price.c_str(), NULL);
 	}
 	inputFile.close();
-	for (std::map<std::string, double>::iterator it = data.begin(); it != data.end(); it++) {
-		if (it->second < 0 || it->second > 2147483647) {
-			throw InvalidFormatException();
-		}
-		if (it->first.length() != 10) {
-			throw InvalidFormatException();
-		}
-
-		if (it->first[4] != '-' || it->first[7] != '-') {
-			throw InvalidFormatException();
-		}
-
-		for (int i = 0; i < 10; i++) {
-			if (i != 4 && i != 7 && !isdigit(it->first[i])) {
-				throw InvalidFormatException();
-			}
-		}
-		int year = atoi(it->first.substr(0, 4).c_str());
-		int month = atoi(it->first.substr(5, 2).c_str());
-		int day = atoi(it->first.substr(8, 2).c_str());
-		if (month < 1 || month > 12 || day < 1 || day > 31) {
-			throw InvalidFormatException();
-		}
-		if (month == 2 && day > 29) {
-			throw InvalidFormatException();
-		}
-		if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) {
-			throw InvalidFormatException();
-		}
-		if (month == 2 && day == 29 && (year % 4 != 0 || (year % 100 == 0 && year % 400 != 0))) {
-			throw InvalidFormatException();
-		}
-	}
 	return data;
 }
 
@@ -183,7 +160,7 @@ void BitcoinExchange::calculate(std::map<std::string, double> db, std::string fi
 		}
 		// check if value is a number
 		int dots = 0;
-		for (unsigned int i = 1; i < value.length(); i++) {
+		for (unsigned int i = 0; i < value.length(); i++) {
 			if (!isdigit(value[i])) {
 				if (value[i] == '.') {
 					dots++;
@@ -201,6 +178,10 @@ void BitcoinExchange::calculate(std::map<std::string, double> db, std::string fi
 					break;
 				}
 			}
+		}
+		if (value == ".") {
+			std::cout << "Wrong value format" << "\n";
+			continue;
 		}
 		if (flag == 1)
 			continue;
